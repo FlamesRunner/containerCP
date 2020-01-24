@@ -16,6 +16,13 @@ class VMController extends Controller
         $this->middleware('auth');
     }
 
+    public function manage_index($ctid) {
+        if (\App\VM::where('owner', \Auth::id())->where('id', $ctid)->count() == 0) {
+            return redirect(route('vm.list'));
+        }
+        return view('user.machines.manage')->with('vm', \App\VM::where('owner', \Auth::id())->where('id', $ctid)->first());
+    }
+
     /**
      * Show the application dashboard.
      *

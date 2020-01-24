@@ -27,6 +27,7 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/dashboard/user/profile', 'UserController@index')->name('profile.view');
 Route::post('/dashboard/user/profile/save', 'UserController@save')->name('profile.save');
 Route::get('/dashboard/vm/list', 'VMController@index')->name('vm.list');
+Route::get('/dashboard/vm/manage/{ctid}', 'VMController@manage_index')->name('vm.manage');
 
 // Admin routes
 Route::get('/dashboard/admin/nodes', 'NodeController@index')->name('admin.nodes');
