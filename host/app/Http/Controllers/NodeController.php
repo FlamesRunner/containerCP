@@ -23,10 +23,14 @@ class NodeController extends Controller
      */
     public function index()
     {
-        if (\Auth::user()->role !== 0) {
+        if (\Auth::user()->role >= 1000) {
             return redirect('/dashboard');
         }
-        $nodes = \App\Node::where('owner', \Auth::id())->paginate(5);
+	if (\Auth::user()->role == 0) {
+		$nodes = \App\Node::paginate(5);
+	} else {
+        	$nodes = \App\Node::where('owner', \Auth::id())->paginate(5);
+	}
         return view('admin.nodes.view_nodes')->with('nodes', $nodes);
     }
 }

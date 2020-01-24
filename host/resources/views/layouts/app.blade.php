@@ -33,10 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @if (Auth::user()->role == 0)
+                        @guest
+			@else
+			    @if (Auth::user()->role < 1000)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.nodes') }}">{{ __('Nodes') }}</a>
                             </li>
+			    <li class="nav-item">
+				<a class="nav-link" href="{{ route('admin.users') }}">{{ __('Users') }}</a>
+			    </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     System settings <span class="caret"></span>
@@ -45,10 +50,11 @@
                                    <a class="dropdown-item" href="">...</a>
                                 </div>
                             </li>
-                        @endif
+			@endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('vm.list') }}">{{ __('Virtual Machines') }}</a>
                         </li>
+			@endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -19,11 +19,15 @@ class UserController extends Controller
 
     public function save(Request $request) {
         $request->validate([
-            'password_one' => 'required|max:255|min:10',
-            'password_two' => 'required|same:password_one',
+            'password_one' => 'nullable|max:255|min:10',
+            'password_two' => 'nullable|same:password_one',
+	    'name' => 'required|max:255|min:1'
         ]);
         $current_user = \App\User::where('id', \Auth::id())->first();
-        $current_user->password = Hash::make($request->input("password_one"));
+	if (!empty($request->input('password_one'))) {
+        	$current_user->password = Hash::make($request->input("password_one"));
+	}
+	$current_user->name = $request->input('name');
         $current_user->save();
         $request->session()->flash('success', true);
         return redirect(route('profile.view'))->with('success', 'true');

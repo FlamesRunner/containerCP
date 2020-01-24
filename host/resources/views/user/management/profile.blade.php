@@ -24,7 +24,7 @@
                     {{ Form::open(array('route' => 'profile.save')) }}
                         {{ Form::token() }}
                         Name
-                        <input type="text" class="form-control" disabled="disabled" value="{{ $user->name }}" />
+                        <input type="text" class="form-control" name="name" value="{{ $user->name }}" />
                         <br />
                         Email address
                         <input type="text" class="form-control" disabled="disabled" value="{{ $user->email }}" />
