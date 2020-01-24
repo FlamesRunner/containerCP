@@ -12,7 +12,7 @@
             </div>
             <br />
             {{ $vms->links() }}
-            @forelse ($vms as $vm) 
+            @forelse ($vms as $vm)
                 <div class="card">
                     <div class="card-body">
                         <div class="btn-group">
@@ -20,7 +20,7 @@
                             <span class="btn btn-secondary" disabled="disabled">{{ $vm->host }}</span>
                         </div>
                         <div style="float: right">
-                            <button class="btn btn-primary">Manage</button>
+                            <a href="{{ route('vm.manage', [$vm->id]) }}" class="btn btn-primary">Manage</a>
                         </div>
                     </div>
                 </div>
