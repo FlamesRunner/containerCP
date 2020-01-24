@@ -14,5 +14,7 @@ A rewrite of natCP, but with more features and eventual user API. Currently, it 
 - Template system
 - Possible support system
 - IP management (v4 support first, then v6 support)
+- User management (mostly done)
+- Permissions (in progress)
 
 I expect that an alpha release will be ready within a few months.
