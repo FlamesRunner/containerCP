@@ -13,7 +13,12 @@
             <br />
             @if (Session::get('error') == 'insufficient_perm')
                 <div class="alert alert-danger">
-                    You cannot modify a user with a greater permissions level than yourself.
+                    You cannot delete users with greater permissions levels than yourself.
+                </div>
+            @endif
+            @if (Session::get('error') == 'self')
+                <div class="alert alert-danger">
+                    You can't delete yourself, silly.
                 </div>
             @endif
             {{ $users->links() }}
@@ -34,7 +39,7 @@
                         <div style="float: right">
                             <div class="btn-group">
                                 <a href="{{ route('admin.profile', [$user->id]) }}" class="btn btn-primary">Edit</a>
-				                <button class="btn btn-danger">Remove</button>
+				                <a href="{{ route('admin.profile.delete', [$user->id])}}" class="btn btn-danger">Remove</a>
                             </div>
                         </div>
                     </div>

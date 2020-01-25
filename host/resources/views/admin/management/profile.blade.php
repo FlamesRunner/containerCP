@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Editing UID{{ $user->id }} ({{ $user->name }})</div>
+                <div class="card-header">Editing {{ $user->name }} (ID: {{ $user->id }})</div>
 
                 <div class="card-body">
                     @if ($errors->any())

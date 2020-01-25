@@ -22,7 +22,7 @@ class AdminUserController extends Controller
             'password' => 'nullable|max:255|min:10',
             'name' => 'required|max:255|min:1',
             'email' => 'required|max:255|min:3|email:rfc,dns',
-            'role' => 'required|max:16|min:0|integer'
+            'role' => 'required|min:0|integer'
         ]);
 
         if (\Auth::id() == $request->input('id')) {
@@ -52,22 +52,23 @@ class AdminUserController extends Controller
         return redirect(route('admin.profile', [$current_user->id]))->with('success', 'true');
     }
 
-    public function delete(Request $request) {
-        if (\Auth::id() == $request->input('id')) {
+    public function delete(Request $request, $uid) {
+        if (\Auth::id() == $uid) {
         	$request->session()->flash('error', 'self');
         	return redirect(route('admin.users'));        	
         }
 
-		if (\Auth::user()->role >= $request->input('role')) {
+ 		if (\App\User::where('id', $uid)->count() == 0) {
+    		return redirect(route('admin.users'));
+    	}	
+
+        $current_user = \App\User::where('id', $uid)->first();
+
+		if (\Auth::user()->role >= $current_user->role) {
         	$request->session()->flash('error', 'insufficient_perm');
         	return redirect(route('admin.users'));
 		}
 
-		if (\App\User::where('id', $request->input('id'))->count() == 0) {
-    		return redirect(route('admin.users'));
-    	}
-
-        $current_user = \App\User::where('id', $request->input('id'))->first();
         $current_user->delete();
 
         $request->session()->flash('success', true);
