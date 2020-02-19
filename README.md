@@ -5,7 +5,7 @@ A rewrite of natCP, but with more features and eventual user API. Currently, it 
 
 ### Slave 
 - Node communications with master (in progress)
-- Control wrapper (almost complete)
+- Control wrapper (complete; pending push)
 - Serial console/emergency shell access (completed 25/01/2020)
 - Container cloning (not confirmed yet)
 
