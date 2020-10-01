@@ -2,6 +2,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 @section('content')
+<style>
+	.td-label {
+		text-align: right; background-color: #f9f9f9;
+	}
+</style>
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -16,7 +21,7 @@
             <table class="table table-bordered table-responsive">
                 <tbody>
                     <tr>
-                        <td style="width: 30%; text-align: right; background-color: #f9f9f9;">Memory Usage <span id="ramusage">(Refreshing...)</span></td>
+                        <td class="td-label">Memory Usage <span id="ramusage">(Refreshing...)</span></td>
                         <td style="">
                             <div class="progress" style="border-radius: 100px !important; width: 100%">
                                 <div id="ram-bar" style="width: 0%;" class="progress-bar progress-bar-info" role="progressbar"></div>
@@ -24,7 +29,7 @@
                         </td>
                     </tr>
                     <tr >
-                        <td style="width: 30%; text-align: right; background-color: #f9f9f9;">Disk <span id="diskusage">(Refreshing...)</span></td>
+                        <td class="td-label">Disk <span id="diskusage">(Refreshing...)</span></td>
                         <td>
                             <div class="progress" style="border-radius: 100px !important">
                                 <div id="disk-bar" style="width: 0%;" class="progress-bar progress-bar-info" role="progressbar"></div>
@@ -32,7 +37,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="col-xs-6" style="text-align: right; background-color: #f9f9f9; border">Operating System</td>
+                        <td class="col-xs-6 td-label">Operating System</td>
                         <td id="os" class="col-xs-6">(please wait...)</td>
                     </tr>
                 </tbody>
@@ -42,15 +47,15 @@
             <table class="table table-bordered table-responsive">
                 <tbody>
                     <tr>
-                        <td style="text-align: right; background-color: #f9f9f9;">Node IP</td>
+                        <td class="td-label">Node IP</td>
                         <td style="width: 90%">{{ $vm->node_ip }}</td>
                     </tr>
                 <tr>
-                    <td style="text-align: right; background-color: #f9f9f9;">Assigned IP addresses</td>
+                    <td class="td-label">Assigned IP addresses</td>
                     <td id="assignedips">{{ $vm->host }}</td>
                 </tr>
                 <tr>
-                    <td style="text-align: right; background-color: #f9f9f9; border">Virtualization</td>
+                    <td class="td-label">Virtualization</td>
                     <td>OpenVZ 7</td>
                 </tr>
                 </tbody>
